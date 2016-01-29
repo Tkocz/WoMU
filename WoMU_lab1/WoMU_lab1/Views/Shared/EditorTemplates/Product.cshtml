@@ -1,0 +1,18 @@
+﻿@model WoMS_lab1.Models.Product
+<tr>
+    <td style="width: 100px;">@Model.ProductID</td>
+    <td style="width: 100px;">@Model.Name</td>
+    <td style="width: 300px;">@Model.Description</td>
+    <td style="width: 100px;">@Model.Price kr</td>
+    <td style="width: 100px;">@Model.InStock</td>
+    <td><button id="@("addProduct_" + Model.ProductID)">Den här ska jag ha!</button></td>
+</tr>
+
+<script type="text/javascript">
+    $("@("#addProduct_" + Model.ProductID)").click(function () {
+        $.post("/Order/AddProduct", { productID: "@Model.ProductID" }, function (data) {
+            alert(data);
+            $("#orderView").load("/Home/OrderInfo");
+        });
+    });
+</script>

@@ -7,27 +7,14 @@
     <p class="lead">Vi säljer allt som behövs för att bygga en raket.</p>
 </div>
 
-<!--<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>-->
+<h3>Kundvagnen:</h3>
+
+<div id="orderView">
+</div>
+
+<hr />
+<h3>Det här skräpet säljer vi:</h3>
+
 
 <div>
     <table>
@@ -39,15 +26,7 @@
             <td style="width: 100px;"><b>I lager</b></td>
         </tr>
 
-@foreach (WoMS_lab1.Models.Product p in Model) {
-        <tr>
-            <td style="width: 100px;">@p.ProductID</td>
-            <td style="width: 100px;">@p.Name</td>
-            <td style="width: 300px;">@p.Description</td>
-            <td style="width: 100px;">@p.Price kr</td>
-            <td style="width: 100px;">@p.InStock</td>
-        </tr>
-}
+        @Html.EditorFor(p => Model)
 
     </table>
 </div>

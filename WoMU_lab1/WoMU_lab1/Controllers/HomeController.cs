@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,13 +12,21 @@ namespace WoMU_lab1.Controllers
     {
         public ActionResult Index()
         {
-            var model = new[] {
-                new Product() { ProductID = "snabel", Name = "produkt ett", Price = 10000 },
-                new Product() { ProductID = "elefant", Name = "produkt två", Price = 10000 },
-                new Product() { ProductID = "raketmotor", Name = "produkt tree", Price = 10000 }
+            // TODO: Läs in produkter automagiskt.
+            dynamic model = new ExpandoObject();
+
+            model.Order    = new Order();
+            model.Products = new[] {
+                new Product() { ProductID = "snabel"    , Name = "produkt ett", Price = 10000 },
+                new Product() { ProductID = "elefant"   , Name = "produkt två", Price = 10000 },
+                new Product() { ProductID = "raketmotor", Name = "produkt tre", Price = 10000 }
             };
 
-            return View(model);
+            return View(model.Products);
+        }
+
+        public ActionResult OrderInfo() {
+            return PartialView("_Order", Session["Order"] ?? new Order());
         }
 
         public ActionResult About()

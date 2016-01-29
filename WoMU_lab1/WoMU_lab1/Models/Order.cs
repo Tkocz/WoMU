@@ -8,6 +8,10 @@ public class Order {
 
     public Customer Customer { get; set; }
 
+    public OrderLine[] OrderLines {
+        get { return orderLines.ToArray(); }
+    }
+
     public void AddProduct(Product product) {
         foreach (OrderLine orderLine in orderLines) {
             if (orderLine.Product.ProductID == product.ProductID) {
@@ -33,10 +37,6 @@ public class Order {
 
     public bool RemoveOrderLine(OrderLine orderLine) {
         return orderLines.Remove(orderLine);
-    }
-
-    public OrderLine[] GetOrderLines() {
-        return orderLines.ToArray();
     }
 }
 

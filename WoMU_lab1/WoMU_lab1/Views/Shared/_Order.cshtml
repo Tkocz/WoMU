@@ -1,0 +1,14 @@
+﻿@model WoMS_lab1.Models.Order
+
+<table>
+    <tr>
+        <td style="width: 100px;"><b>Produkt-ID</b></td>
+        <td style="width: 100px;"><b>Produkt</b></td>
+        <td style="width: 300px;"><b>Beskrivning</b></td>
+        <td style="width: 100px;"><b>Pris</b></td>
+        <td style="width: 100px;"><b>Antal</b></td>
+    </tr>
+
+    @Html.EditorFor(o => Model.OrderLines)
+
+</table>
