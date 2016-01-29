@@ -10,7 +10,7 @@ using WoMS_lab1.Models;
 namespace WoMU_lab1.Controllers {
     public class OrderController : Controller {
         [HttpPost]
-        public string AddProduct(string productID) {
+        public void AddProduct(string productID) {
             Order order = (Order)Session["Order"];
             if (order == null) {
                 order = new Order();
@@ -20,8 +20,6 @@ namespace WoMU_lab1.Controllers {
             var product = new Product() { ProductID = productID, Description = "god damnit" };
 
             order.AddProduct(product);
-
-            return order.OrderLines.Length.ToString();
         }
     }
 }
