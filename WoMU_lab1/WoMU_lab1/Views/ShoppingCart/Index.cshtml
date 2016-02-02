@@ -49,7 +49,7 @@
             {
                 <tr id="row-@article.ArticleId">
                     <td>
-                        @Html.ActionLink(article.Article.ArticleName, "Details", "Store", new { id = article.ArticleId }, null)
+                        @Html.ActionLink(article.Article.ArticleName, "Details", "Articles", new { id = article.ArticleId }, null)
                     </td>
                     <td>
                         @article.Article.ArticlePrice
