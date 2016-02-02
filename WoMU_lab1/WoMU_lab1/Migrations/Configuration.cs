@@ -19,34 +19,34 @@ namespace WoMU_lab1.Migrations
             context.Article.AddOrUpdate(i => i.ArticleName,
         new Article
         {
-            ArticleName = "Nope1",
-            ArticleDescription = "Wut?",
-            ArticlePrice = 8.99M,
-            ArticleInStock = 3
+            ArticleName = "LSD",
+            ArticleDescription = "Fresh from the sidewalk",
+            ArticlePrice = 0.99M,
+            ArticleInStock = 30000
     },
 
          new Article
          {
-             ArticleName = "Nope2",
-             ArticleDescription = "Wut?",
-             ArticlePrice = 8.99M,
+             ArticleName = "Snabel",
+             ArticleDescription = "What's up that trunk?",
+             ArticlePrice = 18.99M,
              ArticleInStock = 3
          },
 
          new Article
          {
-             ArticleName = "Nope3",
-             ArticleDescription = "Wut?",
-             ArticlePrice = 8.99M,
-             ArticleInStock = 3
+             ArticleName = "Random stöldgods",
+             ArticleDescription = "Du kan få en bil...",
+             ArticlePrice = 85.50M,
+             ArticleInStock = 10000
          },
 
        new Article
        {
-           ArticleName = "Nope4",
-           ArticleDescription = "Wut?",
-           ArticlePrice = 8.99M,
-           ArticleInStock = 3
+           ArticleName = "Shiv",
+           ArticleDescription = "It's made of cheese and self-loathing",
+           ArticlePrice = 0.95M,
+           ArticleInStock = 1
        }
    );
 
