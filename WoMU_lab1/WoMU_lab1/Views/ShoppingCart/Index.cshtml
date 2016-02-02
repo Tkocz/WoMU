@@ -1,0 +1,82 @@
+﻿@model WoMU_lab1.Models.ShoppingCartVM
+
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".RemoveLink").click(function () {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                // Perform the ajax post
+                $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeleteId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                        }
+                        $('#cart-total').text(data.CartTotal);
+                        $('#update-message').text(data.Message);
+                        $('#cart-status').text(data.CartCount);
+                    });
+            }
+        });
+    });
+</script>
+<h3>
+    <em>Review</em> your cart:
+</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            Item Name
+        </th>
+        <th>
+            Price (each)
+        </th>
+        <th>
+            Quantity
+        </th>
+    </tr>
+            @foreach (var article in Model.CartItems)
+            {
+                <tr id="row-@article.ArticleId">
+                    <td>
+                        @Html.ActionLink(article.Article.ArticleName, "Details", "Store", new { id = article.ArticleId }, null)
+                    </td>
+                    <td>
+                        @article.Article.ArticlePrice
+                    </td>
+                    <td id="item-count-@article.ArticleId">
+                        @article.Count
+                    </td>
+                    <td>
+                        <a href="#" class="RemoveLink"
+                           data-id="@article.ArticleId">
+                            Remove
+                            from cart
+                        </a>
+                    </td>
+                </tr>
+            }
+            <tr class="info">
+                <td>
+                    Total
+                </td>
+                <td></td>
+                <td></td>
+                <td id="cart-total">
+                    @Model.CartTotal
+                </td>
+            </tr>
+        </table>
+        <button type="button" class="" onclick="location.href='@Url.Action("AddressAndPayment", "Checkout")'">
+            Place order
+        </button>

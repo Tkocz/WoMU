@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WoMU_lab1.Models.Article>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".AddLink").click(function () {
+            // Get the id from the link
+            var recordToAdd = $(this).attr("data-id");
+            if (recordToAdd != '') {
+                // Perform the ajax post
+                $.post("/ShoppingCart/AddToCart", { "id": recordToAdd },
+                    function (data) {
+                        $('#cart-status').text(data.CartCount);
+                    });
+            }
+        });
+    });
+</script>
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ArticleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArticleDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArticlePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArticleInStock)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArticleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArticleDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArticlePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArticleInStock)
+        </td>
+        <td>
+            <a href="#" class="AddLink"
+               data-id="@item.ArticleId" data-toggle="modal" data-target="#myModal">
+                Add
+                to cart
+            </a>
+            <!--@Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = item.ArticleId }, new { htmlAttributes = new { @data_toggle = "modal", @data_target = "#myModal" } })--> |
+            @Html.ActionLink("Details", "Details", new { id=item.ArticleId })
+        </td>
+    </tr>
+}
+
+</table>

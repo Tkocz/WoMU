@@ -1,0 +1,53 @@
+﻿@model WoMU_lab1.Models.Article
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticleDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticlePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticlePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleInStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticleInStock)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="#" class="AddLink"
+   data-id="@Model.ArticleId" data-toggle="modal" data-target="#myModal">
+    Add to cart
+    </a> | 
+    @Html.ActionLink("Back to List", "Index")
+</p>

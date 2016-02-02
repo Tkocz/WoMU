@@ -1,0 +1,74 @@
+﻿@model WoMU_lab1.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderFName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderFName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderSName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderSName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderZipCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderZipCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

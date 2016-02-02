@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WoMU_lab1.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderFName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderSName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderZipCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderEmail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderFName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderSName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderZipCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderEmail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
+        </td>
+    </tr>
+}
+
+</table>
