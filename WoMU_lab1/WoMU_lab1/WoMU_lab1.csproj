@@ -195,10 +195,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OrderPlacementController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
-    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,30 +204,17 @@
     <Compile Include="Migrations\201602010033256_ReBoot.Designer.cs">
       <DependentUpon>201602010033256_ReBoot.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602010857542_ReBoot2.cs" />
-    <Compile Include="Migrations\201602010857542_ReBoot2.Designer.cs">
-      <DependentUpon>201602010857542_ReBoot2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201602021226583_ReBoot3.cs" />
     <Compile Include="Migrations\201602021226583_ReBoot3.Designer.cs">
       <DependentUpon>201602021226583_ReBoot3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602021431420_ReBoot4.cs" />
-    <Compile Include="Migrations\201602021431420_ReBoot4.Designer.cs">
-      <DependentUpon>201602021431420_ReBoot4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201602021659572_boo.cs" />
     <Compile Include="Migrations\201602021659572_boo.Designer.cs">
       <DependentUpon>201602021659572_boo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602021714203_boo1.cs" />
-    <Compile Include="Migrations\201602021714203_boo1.Designer.cs">
-      <DependentUpon>201602021714203_boo1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Cart.cs" />
-    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\OrderLine.cs" />
@@ -266,6 +251,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -290,11 +276,12 @@
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
-    <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="docs\" />
+    <Folder Include="images\" />
     <Folder Include="Views\DB\" />
   </ItemGroup>
   <ItemGroup>
@@ -309,20 +296,11 @@
     <EmbeddedResource Include="Migrations\201602010033256_ReBoot.resx">
       <DependentUpon>201602010033256_ReBoot.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602010857542_ReBoot2.resx">
-      <DependentUpon>201602010857542_ReBoot2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602021226583_ReBoot3.resx">
       <DependentUpon>201602021226583_ReBoot3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602021431420_ReBoot4.resx">
-      <DependentUpon>201602021431420_ReBoot4.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602021659572_boo.resx">
       <DependentUpon>201602021659572_boo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602021714203_boo1.resx">
-      <DependentUpon>201602021714203_boo1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
