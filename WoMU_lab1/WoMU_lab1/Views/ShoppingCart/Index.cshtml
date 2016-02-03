@@ -29,10 +29,10 @@
         });
     });
 </script>
+@if (Model.CartItems.Count > 0){
 <h3>
     <em>Review</em> your cart:
 </h3>
-
 <table class="table">
     <tr>
         <th>
@@ -80,3 +80,8 @@
         <button type="button" class="" onclick="location.href='@Url.Action("AddressAndPayment", "Checkout")'">
             Place order
         </button>
+}
+else
+{
+    <h1>Hurry up and Buy!!!</h1>
+}
