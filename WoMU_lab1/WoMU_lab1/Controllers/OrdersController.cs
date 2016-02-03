@@ -55,8 +55,10 @@ namespace WoMU_lab1.Controllers
                 order.OrderDate = DateTime.Now;
                 var cart = ShoppingCart.GetCart(this.HttpContext);
                 order.OrderDetails = new List<OrderDetail>();//new ArticleDBContext().Set<OrderDetail>();
+                order.OrderTotal = 0;
                 foreach (var c in cart.GetCartItems()) {
                     order.OrderDetails.Add(new OrderDetail() { ArticleId = c.ArticleId, OrderId = order.OrderId, Quantity = c.Count, UnitPrice = c.Article.ArticlePrice });
+                    order.OrderTotal += c.Article.ArticlePrice * c.Count;
                 }
                 db.Order.Add(order);
                 await db.SaveChangesAsync();
