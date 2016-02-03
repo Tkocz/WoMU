@@ -52,6 +52,12 @@ namespace WoMU_lab1.Controllers
         {
             if (ModelState.IsValid)
             {
+                order.OrderDate = DateTime.Now;
+                var cart = ShoppingCart.GetCart(this.HttpContext);
+                order.OrderDetails = new List<OrderDetail>();//new ArticleDBContext().Set<OrderDetail>();
+                foreach (var c in cart.GetCartItems()) {
+                    order.OrderDetails.Add(new OrderDetail() { ArticleId = c.ArticleId, OrderId = order.OrderId, Quantity = c.Count, UnitPrice = c.Article.ArticlePrice });
+                }
                 db.Order.Add(order);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
