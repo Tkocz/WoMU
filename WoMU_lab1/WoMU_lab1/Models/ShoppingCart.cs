@@ -151,6 +151,12 @@ namespace WoMU_lab1.Models
                 order.OrderDetails.Add(orderDetail);
                 DB.OrderDetails.Add(orderDetail);
 
+
+                var art = DB.Article.Where(a => a.ArticleId == article.Article.ArticleId).Single();
+                art.ArticleInStock -= article.Count;
+                if (art.ArticleInStock < 0)
+                    art.ArticleInStock = 0;
+
             }
             // Set the order's total to the orderTotal count
             order.OrderTotal = orderTotal;
