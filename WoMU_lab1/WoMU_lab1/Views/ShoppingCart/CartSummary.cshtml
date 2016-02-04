@@ -2,12 +2,14 @@
     var cart = WoMU_lab1.Models.ShoppingCart.GetCart(this.Context);
 }
 
-<h4>Shopping cart:</h4>
+<h3>Shopping cart:</h3>
 <div>
     @foreach (var a in cart.GetCartItems()) {
         <div style="float: left;">
-            <h3>@a.Count x @a.Article.ArticleName</h3>
-            <h4>@(a.Article.ArticlePrice * a.Count)</h4>
+            <h4>@a.Count x @Html.ActionLink(a.Article.ArticleName, "Details", "Articles", new { id = a.Article.ArticleId }, null)</h4>
+            <h5>@(a.Article.ArticlePrice * a.Count)</h5>
         </div>
     }
+    <h4>Order Total:</h4>
+    <h5>@(cart.GetTotal())</h5>
 </div>
