@@ -66,54 +66,42 @@
             @Html.DisplayFor(model => model.OrderEmail)
         </dd>
     </dl>
-        <table>
-            <tr>
-                <td>
-                    Artikel
-                </td>
-                <td>
-                    Styckpris
-                </td>
-                <td>
-                    Antal
-                </td>
-            </tr>
-            @foreach (var item in Model.OrderDetails)
+    <table>
+        <tr>
+            <td>
+                Artikel
+            </td>
+            <td>
+                Styckpris
+            </td>
+            <td>
+                Antal
+            </td>
+        </tr>
+        @foreach (var item in Model.OrderDetails)
             {
 
-                <tr>
-                    <td>
-                        @item.Article.ArticleName
-                    </td>
-                    <td>
-                        @item.Article.ArticlePrice
-                    </td>
-                    <td>
-                        @item.Quantity
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @item.Article.ArticleName
+                </td>
+                <td>
+                    @item.Article.ArticlePrice
+                </td>
+                <td>
+                    @item.Quantity
+                </td>
+            </tr>
 
-            }
-            <tr>
-                <td style="width: 100px;">
-                    VAT (25%)
-                </td>
-                <td>
-                    @(Model.OrderTotal * (decimal)0.25)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Total:</b>
-                </td>
-                <td>
-                    @(Model.OrderTotal * (decimal)1.25) (incl. VAT)
-                </td>
-            </tr>
-        </table>
-    
+        }
+        <tr>
+            <td>
+                Total (inc. VAT):  @Model.OrderTotal
+            </td>
+        </tr>
+    </table>
+
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
