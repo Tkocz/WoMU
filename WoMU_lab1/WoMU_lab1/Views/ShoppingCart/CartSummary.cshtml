@@ -1,1 +1,13 @@
-﻿shopping cart, eh?
+﻿@{
+    var cart = WoMU_lab1.Models.ShoppingCart.GetCart(this.Context);
+}
+
+<h4>Shopping cart:</h4>
+<div>
+    @foreach (var a in cart.GetCartItems()) {
+        <div style="float: left;">
+            <h3>@a.Article.ArticleName</h3>
+            <h4>@a.Article.ArticlePrice</h4>
+        </div>
+    }
+</div>
