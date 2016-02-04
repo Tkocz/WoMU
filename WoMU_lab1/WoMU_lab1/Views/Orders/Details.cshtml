@@ -95,8 +95,19 @@
 
             }
             <tr>
+                <td style="width: 100px;">
+                    VAT (25%)
+                </td>
                 <td>
-            Total:  @Model.OrderTotal
+                    @(Model.OrderTotal * (decimal)0.25)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>Total:</b>
+                </td>
+                <td>
+                    @(Model.OrderTotal * (decimal)1.25) (incl. VAT)
                 </td>
             </tr>
         </table>
