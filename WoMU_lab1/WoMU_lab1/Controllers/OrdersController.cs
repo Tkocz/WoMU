@@ -66,6 +66,7 @@ namespace WoMU_lab1.Controllers
                         art.ArticleInStock = 0;
                 }
                 db.Order.Add(order);
+                ShoppingCart.GetCart(this.HttpContext).EmptyCart();
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
