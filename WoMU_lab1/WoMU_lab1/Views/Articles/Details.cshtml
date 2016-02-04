@@ -61,9 +61,8 @@
     </dl>
 </div>
 <p>
-    <a href="#" class="AddLink"
-   data-id="@Model.ArticleId" data-toggle="modal" data-target="#myModal">
-    Add to cart
+    <a href="/ShoppingCart/AddToCart/@Model.ArticleId" class="AddLink">
+        Add to cart
     </a> | 
     @Html.ActionLink("Back to List", "Index")
 </p>
