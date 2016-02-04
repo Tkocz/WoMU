@@ -1,0 +1,17 @@
+﻿@{
+    var cart = WoMU_lab1.Models.ShoppingCart.GetCart(this.Context);
+}
+
+<h1>The order failed due to megafailure database</h1>
+<h3>Shopping cart:</h3>
+<div>
+    @foreach (var a in cart.GetCartItems())
+    {
+        <div style="float: left;">
+            <h4>@a.Count x @Html.ActionLink(a.Article.ArticleName, "Details", "Articles", new { id = a.Article.ArticleId }, null)</h4>
+            <h5>@(a.Article.ArticlePrice * a.Count)</h5>
+        </div>
+    }
+    <h4>Order Total:</h4>
+    <h5>@(cart.GetTotal())</h5>
+</div>

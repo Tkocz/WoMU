@@ -68,13 +68,17 @@ namespace WoMU_lab1.Controllers
                 order.OrderDetails = new List<OrderDetail>();//new ArticleDBContext().Set<OrderDetail>();
                 order.OrderTotal = 0;
                 foreach (var c in cart.GetCartItems()) {
-                    order.OrderDetails.Add(new OrderDetail() { ArticleId = c.ArticleId, OrderId = order.OrderId, Quantity = c.Count, UnitPrice = c.Article.ArticlePrice });
-                    order.OrderTotal += c.Article.ArticlePrice * c.Count;
-
                     var art = db.Article.Where(a => a.ArticleId == c.Article.ArticleId).Single();
+
+                    if (art.ArticleInStock - c.Count < 0)
+                    {
+                        return View("~/Views/ShoppingCart/FailedOrder.cshtml");
+                    }
+
+                    order.OrderDetails.Add(new OrderDetail() { ArticleId = c.ArticleId, OrderId = order.OrderId, Quantity = c.Count, UnitPrice = c.Article.ArticlePrice });
+                    order.OrderTotal += c.Article.ArticlePrice * c.Count;                    
+
                     art.ArticleInStock -= c.Count;
-                    if (art.ArticleInStock < 0)
-                        art.ArticleInStock = 0;
                 }
                 db.Order.Add(order);
                 ShoppingCart.GetCart(this.HttpContext).EmptyCart();
