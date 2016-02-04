@@ -1,0 +1,24 @@
+﻿You added the following product to your cart:
+
+<h2>@Model.Article.ArticleName</h2>
+<h3>Only @Model.Article.ArticlePrice</h3>
+
+<h4><a href="/Articles">Back</a></h4>
+
+<h1>Related products:</h1>
+
+<div>
+
+    @foreach (var a in Model.Related) {
+        <div style="float: left; width: 96px; height: 116px;">
+            <div style="text-align: center;">
+                <h3>@a.ArticleName</h3>
+                <h4>Price: @a.ArticlePrice</h4>
+                <a href="/ShoppingCart/AddToCart/@a.ArticleId">
+                    Add
+                    </a>
+            </div>
+        </div>
+    }
+
+</div>

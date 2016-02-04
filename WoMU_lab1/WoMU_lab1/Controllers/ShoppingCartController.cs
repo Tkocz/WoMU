@@ -26,9 +26,13 @@ namespace WoMU_lab1.Controllers
             // Return the view
             return View(viewModel);
         }
+
+        public ActionResult ArticleAdded(int artId) {
+            return View(new AddedArticleModel() { Article = DB.Article.Where(a => a.ArticleId == artId).Single(), Related = RelatedProducts.GetRelatedArticles(DB, artId, 3) });
+        }
+
         //
         // GET: /Store/AddToCart/5
-        [HttpPost]
         public ActionResult AddToCart(int id)
         {
             // Retrieve the item from the database
@@ -50,10 +54,10 @@ namespace WoMU_lab1.Controllers
                 ItemCount = count,
                 DeleteId = id
             };
-            return Json(results);
+            //return Json(results);
 
             // Go back to the main store page for more shopping
-            // return RedirectToAction("Index");
+            return RedirectToAction("ArticleAdded", new { artId = id });
         }
         //
         // AJAX: /ShoppingCart/RemoveFromCart/5

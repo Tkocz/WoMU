@@ -54,8 +54,7 @@
             @Html.DisplayFor(modelItem => item.ArticleInStock)
         </td>
         <td>
-            <a href="#" class="AddLink"
-               data-id="@item.ArticleId" data-toggle="modal" data-target="#myModal">
+            <a href="/ShoppingCart/AddToCart/@item.ArticleId" class="AddLink">
                 Add
                 to cart
             </a>
