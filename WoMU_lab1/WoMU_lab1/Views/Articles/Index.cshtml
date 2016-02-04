@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    var cart = WoMU_lab1.Models.ShoppingCart.GetCart(this.Context);
 }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -36,7 +37,9 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+    var a = cart.GetCartItems();
     <tr>
         <td>
             @Html.ActionLink(item.ArticleName, "Details", new { id = item.ArticleId })
@@ -47,12 +50,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.ArticleInStock)
         </td>
-        <td>
-            <a href="/ShoppingCart/AddToCart/@item.ArticleId" class="AddLink">
-                Add
-                to cart
-            </a>
-        </td>
+
+            @if ((item.ArticleInStock - a.Count) > 0)
+            {
+            <td>
+                <a href="/ShoppingCart/AddToCart/@item.ArticleId" class="AddLink">
+                    Add
+                    to cart
+                </a>
+            </td>
+            }
     </tr>
 }
 

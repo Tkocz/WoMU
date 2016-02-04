@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Details";
+    var cart = WoMU_lab1.Models.ShoppingCart.GetCart(this.Context);
+    var a = cart.GetCartItems();
 }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -61,8 +63,13 @@
     </dl>
 </div>
 <p>
-    <a href="/ShoppingCart/AddToCart/@Model.ArticleId" class="AddLink">
-        Add to cart
-    </a> | 
+    @if ((Model.ArticleInStock - a.Count) > 0)
+            {
+        <a href="/ShoppingCart/AddToCart/@Model.ArticleId" class="AddLink">
+            Add
+            to cart
+        </a>
+}
+ | 
     @Html.ActionLink("Back to List", "Index")
 </p>

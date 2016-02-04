@@ -14,9 +14,12 @@
             <div style="text-align: center;">
                 <h3>@a.ArticleName</h3>
                 <h4>Price: @a.ArticlePrice</h4>
-                <a href="/ShoppingCart/AddToCart/@a.ArticleId">
-                    Add
-                    </a>
+                @if ((a.ArticleInStock - a.Count) > 0)
+                {
+                    <a href="/ShoppingCart/AddToCart/@a.ArticleId" class="AddLink">
+                            Add
+                        </a>
+                 }
             </div>
         </div>
     }
