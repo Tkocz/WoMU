@@ -16,11 +16,22 @@ namespace WoMU_lab1.Controllers
         private ArticleDBContext db = new ArticleDBContext();
 
         // GET: Orders
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string searchString)
         {
-            return View(await db.Order.ToListAsync());
-        }
+            var order = from o in db.Order
+                select o;
+                int number1 = 0;
 
+            bool canConvert = int.TryParse(searchString, out number1);
+                
+            if (canConvert == true)
+                order = order.Where(s => s.OrderId == number1);
+            else
+                order = order.Where(s => s.OrderId == -1);
+            
+            return View(order.ToArray());
+        }
+        
         // GET: Orders/Details/5
         public async Task<ActionResult> Details(int? id)
         {

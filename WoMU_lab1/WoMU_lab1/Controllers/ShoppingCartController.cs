@@ -27,7 +27,8 @@ namespace WoMU_lab1.Controllers
             return View(viewModel);
         }
 
-        public ActionResult ArticleAdded(int artId) {
+        public ActionResult ArticleAdded(int artId)
+        {
             return View(new AddedArticleModel() { Article = DB.Article.Where(a => a.ArticleId == artId).Single(), Related = RelatedProducts.GetRelatedArticles(DB, artId, 3) });
         }
 
@@ -97,6 +98,7 @@ namespace WoMU_lab1.Controllers
 
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");
+
         }
     }
 }

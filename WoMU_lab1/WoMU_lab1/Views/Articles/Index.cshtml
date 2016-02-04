@@ -28,9 +28,6 @@
             @Html.DisplayNameFor(model => model.ArticleName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ArticleDescription)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.ArticlePrice)
         </th>
         <th>
@@ -42,10 +39,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ArticleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ArticleDescription)
+            @Html.ActionLink(item.ArticleName, "Details", new { id = item.ArticleId })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ArticlePrice)
@@ -58,8 +52,6 @@
                 Add
                 to cart
             </a>
-            <!--@Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = item.ArticleId }, new { htmlAttributes = new { @data_toggle = "modal", @data_target = "#myModal" } })--> |
-            @Html.ActionLink("Details", "Details", new { id=item.ArticleId })
         </td>
     </tr>
 }
