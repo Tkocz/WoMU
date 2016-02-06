@@ -63,7 +63,7 @@
     </dl>
 </div>
 <p>
-    @if ((Model.ArticleInStock - a.Count) > 0)
+    @if (Model.ArticleInStock > 0 && (!a.Any(art => art.ArticleId == Model.ArticleId) || (Model.ArticleInStock - a.Where(c => c.ArticleId == Model.ArticleId).Single().Count) > 0))
             {
         <a href="/ShoppingCart/AddToCart/@Model.ArticleId" class="AddLink">
             Add

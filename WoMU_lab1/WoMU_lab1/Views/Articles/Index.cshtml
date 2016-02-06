@@ -51,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.ArticleInStock)
         </td>
 
-            @if ((item.ArticleInStock - a.Count) > 0)
+            @if (item.ArticleInStock > 0 && (!a.Any(art => art.ArticleId == item.ArticleId) || (item.ArticleInStock - a.Where(c => c.ArticleId == item.ArticleId).Single().Count) > 0))
             {
             <td>
                 <a href="/ShoppingCart/AddToCart/@item.ArticleId" class="AddLink">

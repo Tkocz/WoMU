@@ -1,5 +1,7 @@
 ﻿You added the following product to your cart:
-
+@{
+    var cart = WoMU_lab1.Models.ShoppingCart.GetCart(this.Context);
+}
 <h2>@Model.Article.ArticleName</h2>
 <h3>Only @Model.Article.ArticlePrice</h3>
 
@@ -9,19 +11,20 @@
 
 <div>
 
-    @foreach (var a in Model.Related) {
-        <div style="float: left; width: 150px; height: 116px;">
+    @foreach (var article in Model.Related)
+    {
+        var a = cart.GetCartItems();
+       if (article.ArticleInStock > 0 && (!a.Any(art => art.ArticleId == article.ArticleId) || (article.ArticleInStock - a.Where(c => c.ArticleId == article.ArticleId).Single().Count) > 0))
+       {        <div style="float: left; width: 150px; height: 116px;">
             <div style="text-align: center;">
-                <h3>@a.ArticleName</h3>
-                <h4>Price: @a.ArticlePrice</h4>
-                @if ((a.ArticleInStock - a.Count) > 0)
-                {
-                    <a href="/ShoppingCart/AddToCart/@a.ArticleId" class="AddLink">
+                <h3>@article.ArticleName</h3>
+                <h4>Price: @article.ArticlePrice</h4>
+
+                    <a href="/ShoppingCart/AddToCart/@article.ArticleId" class="AddLink">
                             Add
                         </a>
-                 }
             </div>
         </div>
+        }
     }
-
 </div>
