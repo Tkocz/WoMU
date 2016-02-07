@@ -65,7 +65,7 @@ namespace WoMU_lab1.Controllers
             {
                 order.OrderDate = DateTime.Now;
                 var cart = ShoppingCart.GetCart(this.HttpContext);
-                order.OrderDetails = new List<OrderDetail>();//new ArticleDBContext().Set<OrderDetail>();
+                order.OrderDetails = new List<OrderDetail>();
                 order.OrderTotal = 0;
                 foreach (var c in cart.GetCartItems()) {
                     var art = db.Article.Where(a => a.ArticleId == c.Article.ArticleId).Single();
@@ -76,14 +76,14 @@ namespace WoMU_lab1.Controllers
                     }
 
                     order.OrderDetails.Add(new OrderDetail() { ArticleId = c.ArticleId, OrderId = order.OrderId, Quantity = c.Count, UnitPrice = c.Article.ArticlePrice });
-                    order.OrderTotal += c.Article.ArticlePrice * c.Count;                    
+                    order.OrderTotal += c.Article.ArticlePrice * c.Count;           //OrderTotal ex VAT, else adjust here.         
 
                     art.ArticleInStock -= c.Count;
                 }
                 db.Order.Add(order);
                 ShoppingCart.GetCart(this.HttpContext).EmptyCart();
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Orders", new { id = order.OrderId });
             }
 
             return View(order);
@@ -116,32 +116,6 @@ namespace WoMU_lab1.Controllers
                 return RedirectToAction("Index");
             }
             return View(order);
-        }
-
-        // GET: Orders/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = await db.Order.FindAsync(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
-
-        // POST: Orders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            Order order = await db.Order.FindAsync(id);
-            db.Order.Remove(order);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
         }
 
     }

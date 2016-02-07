@@ -118,9 +118,6 @@ namespace WoMU_lab1.Models
 
         public decimal GetTotal()
         {
-            // Multiply item price by count of that item to get 
-            // the current price for each of those items in the cart
-            // sum all item price totals to get the cart total
             decimal? total = (from cartItems in DB.Carts
                               where cartItems.CartId == ShoppingCartId
                               select (int?)cartItems.Count *
@@ -135,8 +132,6 @@ namespace WoMU_lab1.Models
             order.OrderDetails = new List<OrderDetail>();
 
             var cartItems = GetCartItems();
-            // Iterate over the items in the cart, 
-            // adding the order details for each
             foreach (var article in cartItems)
             {
                 var orderDetail = new OrderDetail
@@ -146,12 +141,11 @@ namespace WoMU_lab1.Models
                     UnitPrice = article.Article.ArticlePrice,
                     Quantity = article.Count
                 };
-                // Set the order total of the shopping cart
+            
                 orderTotal += (article.Count * article.Article.ArticlePrice);
                 order.OrderDetails.Add(orderDetail);
                 DB.OrderDetails.Add(orderDetail);
-
-
+                
                 var art = DB.Article.Where(a => a.ArticleId == article.Article.ArticleId).Single();
                 art.ArticleInStock -= article.Count;
                 if (art.ArticleInStock < 0)
@@ -161,15 +155,13 @@ namespace WoMU_lab1.Models
             // Set the order's total to the orderTotal count
             order.OrderTotal = orderTotal;
 
-            // Save the order
             DB.SaveChanges();
-            // Empty the shopping cart
+
             EmptyCart();
             // Return the OrderId as the confirmation number
             return order;
         }
 
-        // We're using HttpContextBase to allow access to cookies.
         public string GetCartId(HttpContextBase context)
         {
             if (context.Session[CartSessionKey] == null)
@@ -181,9 +173,7 @@ namespace WoMU_lab1.Models
                 }
                 else
                 {
-                    // Generate a new random GUID using System.Guid class
                     Guid tempCartId = Guid.NewGuid();
-                    // Send tempCartId back to client as a cookie
                     context.Session[CartSessionKey] = tempCartId.ToString();
                 }
             }
