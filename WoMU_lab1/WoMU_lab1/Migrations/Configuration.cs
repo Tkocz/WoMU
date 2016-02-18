@@ -1,11 +1,10 @@
-namespace WoMU_lab1.Migrations
+namespace WebApplication1.Migrations
 {
-    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
+    using WoMU_lab1.Models;
     internal sealed class Configuration : DbMigrationsConfiguration<WoMU_lab1.Models.ArticleDBContext>
     {
         public Configuration()
@@ -23,7 +22,7 @@ namespace WoMU_lab1.Migrations
             ArticleDescription = "Fresh from the sidewalk",
             ArticlePrice = 0.99M,
             ArticleInStock = 30000
-    },
+        },
 
          new Article
          {

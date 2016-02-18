@@ -1,9 +1,9 @@
-namespace WoMU_lab1.Migrations
+namespace WebApplication1.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ReBoot : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -23,12 +23,13 @@ namespace WoMU_lab1.Migrations
                 "dbo.Carts",
                 c => new
                     {
-                        CartId = c.String(nullable: false, maxLength: 128),
+                        ID = c.Int(nullable: false, identity: true),
+                        CartId = c.String(),
                         ArticleId = c.Int(nullable: false),
                         Count = c.Int(nullable: false),
                         DateCreated = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.CartId)
+                .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Articles", t => t.ArticleId, cascadeDelete: true)
                 .Index(t => t.ArticleId);
             
@@ -37,13 +38,15 @@ namespace WoMU_lab1.Migrations
                 c => new
                     {
                         OrderId = c.Int(nullable: false, identity: true),
-                        OrderFName = c.String(),
-                        OrderSName = c.String(),
-                        OrderAddress = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        OrderZipcode = c.Int(nullable: false),
-                        OrderEMail = c.String(),
-                        OrderPhone = c.Int(nullable: false),
-                        Total = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        OrderDate = c.DateTime(nullable: false),
+                        OrderFName = c.String(nullable: false, maxLength: 30),
+                        OrderSName = c.String(nullable: false, maxLength: 50),
+                        OrderAddress = c.String(nullable: false, maxLength: 70),
+                        OrderCity = c.String(nullable: false, maxLength: 40),
+                        OrderZipCode = c.String(nullable: false, maxLength: 10),
+                        OrderPhone = c.String(nullable: false, maxLength: 24),
+                        OrderEmail = c.String(),
+                        OrderTotal = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.OrderId);
             
